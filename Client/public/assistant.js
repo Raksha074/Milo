@@ -6,6 +6,9 @@
     const theme = "dark"
     let assistantConfig = null
 
+    // 🌐 APNA RENDER BACKEND LIVE URL YAHAN DALIYEGAP (Aakhri mein slash '/' mat lagaiyega)
+    const BACKEND_URL = "https://milo1-anww.onrender.com";
+
     // load CSS
     const link = document.createElement("link")
     link.rel = "stylesheet"
@@ -88,7 +91,7 @@
     const loadAssistant = async () => {
         try {
             if (!userId) return;
-            const res = await fetch(`http://localhost:8000/api/assistant/config/${userId}`)
+            const res = await fetch(`${BACKEND_URL}/api/assistant/config/${userId}`)
             if (!res.ok) {
                 return;
             }
@@ -169,11 +172,11 @@
         recognition.interimResults = true;
 
         let finalTranscript = "";
-        let silenceTimer = null; // ✅ Naya Timer
+        let silenceTimer = null;
 
         mic.onclick = () => {
             finalTranscript = "";
-            clearTimeout(silenceTimer); // Purana timer clear karein
+            clearTimeout(silenceTimer);
 
             wave.style.opacity = "1";
             status.innerText = "Listening...";
@@ -199,17 +202,17 @@
             }
             userText.innerText = "You: " + (finalTranscript || interimTranscript);
 
-            // ✅ JAISE HI USER KUCH BOLEGA, TIMER RESET HO JAYEGA
+
             clearTimeout(silenceTimer);
 
-            // ✅ AGAR 2 SECOND TAK KUCH NAHI BOLA, TOH MIC BAND KARDO (2000 ms = 2 sec)
+
             silenceTimer = setTimeout(() => {
                 recognition.stop();
-            }, 2000); // Agar 3 second karna ho toh 2000 ki jagah 3000 kar dijiye
+            }, 2000);
         };
 
         recognition.onend = async () => {
-            clearTimeout(silenceTimer); // Safe side ke liye timer band karein
+            clearTimeout(silenceTimer);
             wave.style.opacity = "0";
 
             const textToSent = finalTranscript.trim();
@@ -222,7 +225,7 @@
             status.innerText = "Thinking...";
 
             try {
-                const res = await fetch("http://localhost:8000/api/assistant/ask", {
+                const res = await fetch(`${BACKEND_URL}/api/assistant/ask`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

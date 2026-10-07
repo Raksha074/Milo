@@ -32,7 +32,6 @@ function Builder({ user, setUser }) {
   const [theme, setTheme] = useState(user?.theme || "dark")
   const [tone, setTone] = useState(user?.tone || "friendly")
 
-  // ✅ Clean Variable Names: Gemini ko Groq se replace kar diya
   const [groqApiKey, setGroqApiKey] = useState(user?.groqApiKey || "")
 
   const [pages, setPages] = useState(user?.pages || []);
@@ -70,7 +69,7 @@ function Builder({ user, setUser }) {
   const saveAssistant = async () => {
     setLoading(true)
     try {
-      // ✅ Payload mein ab groqApiKey jayega
+
       const data = {
         assistantName,
         businessName,
@@ -153,7 +152,7 @@ function Builder({ user, setUser }) {
 
               <div className='rounded-2xl border border-gray-100 bg-[#f8fafc] p-4'>
                 <p className='text-sm text-gray-400'>API Status</p>
-                {/* ✅ Status ab groqStatus check karega */}
+
                 <h2 className={`text-xl font-bold mt-1 capitalize ${user?.groqStatus === "active"
                   ? "text-emerald-600"
                   : user?.groqStatus === "invalid"
