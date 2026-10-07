@@ -17,7 +17,7 @@ const privateCors =
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://milo-nu5bdxlwo-raksha-project.vercel.app"
+      "https://milo-snowy.vercel.app"
     ],
 
     credentials: true
