@@ -12,7 +12,7 @@ import { Toaster } from "react-hot-toast"
 // eslint-disable-next-line react-refresh/only-export-components
 export const ServerUrl = import.meta.env.VITE_SERVER_URL || "https://milo1-anww.onrender.com"
 // eslint-disable-next-line react-refresh/only-export-components
-export const CLIENT_URL = typeof window !== 'undefined' ? window.location.origin : "https://milo-191ba6p90-raksha-project.vercel.app"
+export const CLIENT_URL = typeof window !== 'undefined' ? window.location.origin : "https://milo-nu5bdxlwo-raksha-project.vercel.app"
 
 
 function App() {
